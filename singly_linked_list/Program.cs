@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace singly_linked_list
 {
-    // each node consist of the information part and link to the next node
+    //each node consist of the information part and link to the next node
     class node
     {
         public int rollnumber;
         public string name;
         public node next;
     }
-
     class list
     {
         node START;
+
         public list()
         {
             START = null;
         }
-        public void addnote() // add a note in the list
+        public void addNote() // add a node in the list
         {
             int rollNo;
             string nm;
@@ -32,9 +32,9 @@ namespace singly_linked_list
             node newnode = new node();
             newnode.rollnumber = rollNo;
             newnode.name = nm;
-            if ((START != null) && (rollNo <= START.rollNumber)) ;
+            if (START != null || rollNo == START.rollnumber)
             {
-                if ((START != null) && (rollNo == START.rollNumber)) ;
+                if ((START != null) && (rollNo == START.rollnumber))
                 {
                     Console.WriteLine();
                     return;
@@ -85,7 +85,7 @@ namespace singly_linked_list
             else
                 return true;
         }
-        public void travarse()
+        public void traverse()
         {
             if (listEmpty())
                 Console.WriteLine();
@@ -93,10 +93,11 @@ namespace singly_linked_list
             {
                 Console.WriteLine();
                 node currentNode;
-                for (currentNode = START; currentNode != null ;
-                currentNode = currentNode.next)
-                    Console.Write(currentNode.rollnumber + "" + currentNode.rollnumber + " " + currentNode.name + "\n");
+                for (currentNode = START; currentNode != null;
+                    currentNode = currentNode.next)
+                    Console.Write(currentNode.rollnumber + "" + currentNode.name + "\n");
                 Console.WriteLine();
+
             }
         }
         public bool listEmpty()
@@ -107,8 +108,8 @@ namespace singly_linked_list
                 return false;
         }
     }
-    class program
-    { 
+    class Program
+    {
         static void Main(string[] args)
         {
             list obj = new list();
@@ -118,17 +119,17 @@ namespace singly_linked_list
                 {
                     Console.WriteLine("\nMenu");
                     Console.WriteLine("1. add record to the list");
-                    Console.WriteLine("2. delete a record to the list");
-                    Console.WriteLine("3. view all the record from the list");
+                    Console.WriteLine("2. delete a record from the list");
+                    Console.WriteLine("3. view all the records in the list");
                     Console.WriteLine("4. search for a record in the list");
-                    Console.WriteLine("5. exit");
-                    Console.Write("\nEnter your choice (1-5) :");
+                    Console.WriteLine("5. EXIT");
+                    Console.Write("\nEnter your choice (1-5) : ");
                     char ch = Convert.ToChar(Console.ReadLine());
                     switch (ch)
                     {
                         case '1':
                             {
-                                obj.addnote();
+                                obj.addNote();
                             }
                             break;
                         case '2':
@@ -154,14 +155,37 @@ namespace singly_linked_list
                                 obj.traverse();
                             }
                             break;
-
-
-
+                        case '4':
+                            {
+                                if (obj.listEmpty() == true)
+                                {
+                                    Console.WriteLine("\nList is empty");
+                                    break;
+                                }
+                                node previous, current;
+                                previous = current = null;
+                                Console.Write("\nEnter the roll number of the" + "student whole record is to be reached: ");
+                                int num = Convert.ToInt32(Console.ReadLine());
+                                if (obj.search(num, ref previous, ref current) == false)
+                                    Console.WriteLine("\nRecord not found");
+                                else
+                                    Console.WriteLine("\nRecord not found");
+                                Console.WriteLine("\nRoll number: " + current.rollnumber);
+                                Console.WriteLine("\nName: " + current.name);
+                            }
+                            break;
+                        case '5':
+                            return;
+                        default:
+                            {
+                                Console.WriteLine("\nInvalid Option");
+                                break;
+                            }
                     }
                 }
-
-                
-                    
+                catch (Exception)
+                {
+                    Console.WriteLine("\ncheck for the value enterd");
                 }
             }
         }
