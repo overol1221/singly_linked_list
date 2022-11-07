@@ -140,10 +140,25 @@ namespace singly_linked_list
                                 }
                                 Console.WriteLine("Enter the roll number of" + "" +
                                     "the student whose record is to be deleted: ");
-
-
+                                int rollNo = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine();
+                                if (obj.delnode(rollNo) == false)
+                                    Console.WriteLine("\nRecord not found.");
+                                else
+                                    Console.WriteLine("record with roll number" +
+                                        rollNo + "Deleted");
                             }
+                            break;
+                        case '3':
+                            {
+                                obj.traverse();
+                            }
+                            break;
+
+
+
                     }
+                }
 
                 
                     
