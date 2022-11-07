@@ -112,8 +112,8 @@ namespace singly_linked_list
         static void Main(string[] args)
         {
             list obj = new list();
-            while(true)
-            { 
+            while (true)
+            {
                 try
                 {
                     Console.WriteLine("\nMenu");
@@ -123,13 +123,32 @@ namespace singly_linked_list
                     Console.WriteLine("4. search for a record in the list");
                     Console.WriteLine("5. exit");
                     Console.Write("\nEnter your choice (1-5) :");
-        }
-       
-   
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
+                    char ch = Convert.ToChar(Console.ReadLine());
+                    switch (ch)
+                    {
+                        case '1':
+                            {
+                                obj.addnote();
+                            }
+                            break;
+                        case '2':
+                            {
+                                if (obj.listEmpty())
+                                {
+                                    Console.WriteLine("\nlist is empty");
+                                    break;
+                                }
+                                Console.WriteLine("Enter the roll number of" + "" +
+                                    "the student whose record is to be deleted: ");
+
+
+                            }
+                    }
+
+                
+                    
+                }
+            }
         }
     }
 }
